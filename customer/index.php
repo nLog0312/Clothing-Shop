@@ -24,20 +24,20 @@
 					<div class="navbar-right">
 						<ul class="nav navbar-nav">
 							<li class="sign-in"><a href="javascript:;">Đăng Nhập</a></li>
-							<li><a class="sign-up" style="margin-right: 20px;" href="login.php">Đăng Ký</a></li>
+							<li class="sign-up"><a style="margin-right: 20px;" href="javascript:;">Đăng Ký</a></li>
 						</ul>
 					</div>
 				</div>
 			</nav>
 		</div>
 		<?php
-            include_once './customer/content/home_products.php';
+            include_once './content/home_products.php';
         ?>
 		<div id="footer">
 			<p>Author: nLog0312 &#10084;</p>
 			<div class="contact">
-				<a href="https://www.facebook.com/nlog0312/"><img src="https://img.icons8.com/fluent/48/000000/facebook-new.png"/></a>
-				<a href="https://www.instagram.com/nlog0312/"><img src="https://img.icons8.com/fluent/48/000000/instagram-new.png"/></a>
+				<a href="https://www.facebook.com/nlog0312/" target="_blank"><img src="https://img.icons8.com/fluent/48/000000/facebook-new.png"/></a>
+				<a href="https://www.instagram.com/nlog0312/" target="_blank"><img src="https://img.icons8.com/fluent/48/000000/instagram-new.png"/></a>
 			</div>
 		</div>
 	</div>
@@ -46,14 +46,18 @@
         const sign_in = document.querySelector(".sign-in");
         const sign_up = document.querySelector(".sign-up");
         sign_in.addEventListener("click", function(e){
-            document.querySelector(".modal").style.display = "block";
+            document.querySelector("#signin").style.display = "block";
         });
+		sign_up.addEventListener("click", function(e){
+			document.querySelector("#signup").style.display = "block";
+		});
         // Get the modal
-        var modal = document.getElementById('id01');
+        var moda_signin = document.getElementById('signin');
+		var modal_signup = document.getElementById('signup');
         
         // When the user clicks anywhere outside of the modal, close it
         window.onclick = function(event) {
-        if (event.target == modal) {
+        if (event.target == modal_signin || event.target == modal_signup) {
             modal.style.display = "none";
         }
         }
