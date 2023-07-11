@@ -210,6 +210,7 @@ span.psw {
 
 .card-img-actions {
     position: relative;
+    min-height: 350px;
 }
 .card-body {
     -ms-flex: 1 1 auto;
@@ -219,12 +220,11 @@ span.psw {
 }
 
 .card-img{
-
-    width: 350px;
+    width: 330px;
 }
 
 .star{
-        color: red;
+    color: red;
 }
 
 .bg-cart {
