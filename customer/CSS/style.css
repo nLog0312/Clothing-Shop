@@ -3,9 +3,16 @@ body {
     font-family: 'Montserrat', sans-serif;
 }
 
+#main {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
 #header {
     position: fixed;
     width: 100%;
+    z-index: 1;
 }
 .container-fluid {
     padding: 0 100px;
@@ -16,7 +23,7 @@ body {
     filter: contrast(1);
 }
 #body {
-    height: 1000px;
+    margin-top: 72px;
 }
 #footer {
     min-height: 50px;
@@ -120,7 +127,7 @@ span.psw {
     margin: 5% auto 15% auto;
     border: 1px solid #888;
     width: 32%;
-    height: 58%;
+    height: fit-content;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
@@ -176,4 +183,73 @@ span.psw {
     .cancelbtn {
         width: 100%;
     }
+}
+
+/* CSS Product */
+.mt-50{
+
+    margin-top: 50px;
+}
+
+.mb-50{
+
+    margin-bottom: 50px;
+}
+
+.card {
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: .1875rem;
+}
+
+.card-img-actions {
+    position: relative;
+}
+.card-body {
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    padding: 1.25rem;
+    text-align: center;
+}
+
+.card-img{
+
+    width: 350px;
+}
+
+.star{
+        color: red;
+}
+
+.bg-cart {
+    background-color:orange;
+    color:#fff;
+}
+
+.bg-cart:hover {
+    
+    color:#fff;
+}
+
+.bg-buy {
+    background-color:green;
+    color:#fff;
+    padding-right: 29px;
+}
+.bg-buy:hover {
+    color:#fff;
+}
+
+a{
+    text-decoration: none !important;
+}
+
+.mt-2 {
+    margin-top: 2rem !important;
 }
