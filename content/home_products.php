@@ -43,12 +43,12 @@
                     <div class="card-body bg-light text-center">
                         <div class="mb-2">
                             <h6 class="font-weight-semibold mb-2">
-                                <a href="#" class="text-default mb-2" data-abc="true"><?php echo $name;?></a>
+                                <a href="./Product.php?id= <?php echo $id;?>" class="text-default mb-2"><?php echo $name;?></a>
                             </h6>
                         </div>
                         <h3 class="mb-0 font-weight-semibold"><?php echo product_price($price);?></h3>
                         
-                        <button type="button" class="btn bg-cart"><i class="fa fa-cart-plus mr-2"></i>Thêm vào giỏ hàng</button>
+                        <button type="button" class="btn bg-cart"><ion-icon name="cart-outline"></ion-icon>Thêm vào giỏ hàng</button>
                     </div>
                 </div>
             </div>

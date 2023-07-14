@@ -39,6 +39,7 @@
 	</section>
 
     <?php
+		include_once '../root/func.php';
         $id = $_GET['id'];
         $sqlGetProduct = "
             SELECT * FROM `products`

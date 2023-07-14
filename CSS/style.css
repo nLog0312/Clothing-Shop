@@ -228,8 +228,12 @@ span.psw {
 }
 
 .bg-cart {
-    background-color:orange;
-    color:#fff;
+    background-color: orange;
+    color: #fff;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    align-items: center;
 }
 
 .bg-cart:hover {
@@ -252,4 +256,14 @@ a{
 
 .mt-2 {
     margin-top: 2rem !important;
+}
+
+.font-weight-semibold.mb-2 {
+    margin-bottom: 2rem !important;
+    font-size: 20px;
+}
+
+.card-body ion-icon {
+    font-size: 20px;
+    margin-right: 10px;
 }

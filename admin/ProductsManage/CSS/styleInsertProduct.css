@@ -6,11 +6,6 @@
 	align-items: center;
 }
 
-.addNewItem .content button,
-.updateItem .content button {
-	width: 100px;
-}
-
 form {
     border: 1px solid var(--toggle-color);
     padding: 10px;
@@ -35,7 +30,7 @@ textarea {
 	resize: none;
 }
 
-input[type=submit] {
+.btnProduct {
 	font-size: 20px;
 	width: 100%;
 	background-color: #4CAF50;
@@ -48,7 +43,7 @@ input[type=submit] {
 	grid-column: 1 / span 2;
 }
 
-input[type=submit]:hover {
+.btnProduct:hover {
 	background-color: #45a049;
 }
 

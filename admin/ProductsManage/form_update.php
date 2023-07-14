@@ -45,7 +45,7 @@
                     <label class="validate descriptProduct"></label>
                 </div>
 
-                <input type="submit" value="Sửa sản phẩm">
+                <button class="btnProduct">Sửa sản phẩm</button>
             </form>
             <button>
                 <a href="index.php">Quay lại</a>

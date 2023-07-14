@@ -44,7 +44,7 @@
 	height: 100px;
 }
 
-.modal-container--detailProduct input[type=submit] {
+.modal-container--detailProduct .btnDetail {
 	font-size: 20px;
 	width: 100%;
 	background-color: #4CAF50;

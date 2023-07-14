@@ -32,7 +32,7 @@
                     <label class="validate descriptProduct"></label>
                 </div>
 
-                <input type="submit" value="Thêm mới">
+                <button class="btnProduct">Thêm mới</button>
             </form>
             <button>
                 <a href="index.php">Quay lại</a>

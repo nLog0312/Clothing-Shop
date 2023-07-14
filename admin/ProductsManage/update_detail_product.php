@@ -88,7 +88,7 @@
 					<input type="file" name="imgProduct" accept="image/png, image/jpeg">
 					<label class="validate imgProduct"></label>
 
-					<input type="submit" value="Sửa">
+					<button class="btnDetail">Sửa</button>
 				</form>
 				<button>
 					<a href="../ProductsManage/detail_product.php?id=<?php echo "$idProduct";?>">Quay lại</a>

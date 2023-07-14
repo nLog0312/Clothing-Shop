@@ -1,5 +1,6 @@
 <?php
     require_once '../root/connect.php';
+    require_once '../root/func.php';
 
     $stringSQL = "SELECT `id`, `name`, `price`, `type` FROM `products` WHERE `name` LIKE '%$search%'";
 
