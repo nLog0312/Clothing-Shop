@@ -34,8 +34,8 @@
                         <div class="card-img-actions">
                             <?php
                                 echo "
-                                <object style='position: absolute; left: 0; max-height: 350px;' class='card-img img-fluid' width='96' data='./admin/ProductsManage/photos/$image' type='image/png'>
-                                    <img style='max-height: 350px;' src='./admin/menu/IMG/logo.png' class='card-img img-fluid' width='96' alt=''>
+                                <object style='position: absolute; left: 0; max-height: 350px; min-height: 350px;' class='card-img img-fluid img-rounded' width='96' data='./admin/ProductsManage/photos/$image' type='image/png'>
+                                    <img style='max-height: 350px; min-height: 350px;' src='./admin/menu/IMG/logo.png' class='card-img img-fluid' width='96' alt=''>
                                 </object>";
                             ?>
                         </div>

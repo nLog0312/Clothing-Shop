@@ -3,15 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Clothing Shop</title>
     
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous"></script>
-	<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	
+    <!-- Icon -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 	<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 
 	<link rel="stylesheet" href="./CSS/style.css">
+    <link rel="stylesheet" href="./CSS/styleDetail.css">
 </head>
 <body>
     <div id="main">
@@ -43,9 +46,87 @@
             }
         ?>
         <div id="body">
-            <div class="container text-center">
-                <div class="col">
-                    <h1>Chi Tiết Sản Phẩm</h1>
+            <div class="body-detail">
+                <h1>Chi Tiết Sản Phẩm</h1>
+                <div class="container text-center">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div class="all-img_product">
+                                <div class="product-img">
+                                    <img class="img-father img-rounded" src="./admin/ProductsManage/photos/<?php echo $image[0]?>" alt="">
+                                </div>
+                                <div class="product-img--bottom">
+                                    <div class="prevImg"><ion-icon name="chevron-back-outline"></ion-icon></div>
+                                    <div class="list-img">
+                                        <?php
+                                            foreach ($image as $index => $value) {
+                                                echo "
+                                                    <div class='img'>
+                                                        <input class='img-soon img-rounded' type='image' src='./admin/ProductsManage/photos/$value' alt=''>
+                                                    </div>
+                                                ";
+                                            }
+                                        ?>
+                                    </div>
+                                    <div class="nextImg"><ion-icon name="chevron-forward-outline"></ion-icon></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="product-show">
+                                <div class="product-show-header text-left">
+                                    <h2><?php echo $name?></h2>
+                                    <h3><?php echo product_price($price)?></h3>
+                                </div>
+                                <div class="product-show-body text-left">
+                                    <h3>Mô tả sản phẩm</h3>
+                                    <hr>
+                                    <p><?php echo $description?></p>
+                                    <hr>
+                                    <h3>Thông tin sản phẩm</h3>
+                                    <hr>
+                                </div>
+                                <div class="product-show-footer text-left">
+                                    <div class="footer-left">
+                                        <div class="footer-left--color">
+                                            <h4>Màu sắc</h4>
+                                            <div class="color">
+                                                <?php
+                                                    foreach ($color as $index => $value) {
+                                                        echo "
+                                                            <div class='color-item'>
+                                                                <input style='display: none;' type='radio' name='color' id='color-$index' value='$value'>
+                                                                <label for='color-$index' style='background-color: $value'></label>
+                                                            </div>
+                                                        ";
+                                                    }
+                                                ?>
+                                            </div>
+                                        </div>
+                                        <div class="footer-left--size">
+                                            <h4>Kích thước</h4>
+                                            <div class="size">
+                                                <?php
+                                                    foreach ($size as $index => $value) {
+                                                        echo "
+                                                            <div class='size-item'>
+                                                                <input type='radio' name='size' id='size-$index' value='$value'>
+                                                                <label for='size-$index'>$value</label>
+                                                            </div>
+                                                        ";
+                                                    }
+                                                ?>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="footer-right">
+                                        <button class="btn bg-cart"><ion-icon name="cart-outline"></ion-icon>Thêm vào giỏ hàng</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -57,5 +138,9 @@
             include_once './JS/handle_modal.php'
         ?>
     </div>
+
+    <?php
+        include_once './JS/handleDetailProduct.php';
+    ?>
 </body>
 </html>
