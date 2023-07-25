@@ -5,9 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clothing Shop</title>
     
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 	
     <!-- Icon -->
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
@@ -52,8 +51,8 @@
                     <div class="row">
                         <div class="col-md-5">
                             <div class="all-img_product">
-                                <div class="product-img">
-                                    <img class="img-father img-rounded" src="./admin/ProductsManage/photos/<?php echo $image[0]?>" alt="">
+                                <div class="product-img border border-dark-subtle rounded">
+                                    <img class="img-father img-thumbnail" src="./admin/ProductsManage/photos/<?php echo $image[0]?>" alt="">
                                 </div>
                                 <div class="product-img--bottom">
                                     <div class="prevImg"><ion-icon name="chevron-back-outline"></ion-icon></div>
@@ -62,7 +61,7 @@
                                             foreach ($image as $index => $value) {
                                                 echo "
                                                     <div class='img'>
-                                                        <input class='img-soon img-rounded' type='image' src='./admin/ProductsManage/photos/$value' alt=''>
+                                                        <input class='img-soon rounded' type='image' src='./admin/ProductsManage/photos/$value' alt=''>
                                                     </div>
                                                 ";
                                             }
@@ -74,11 +73,11 @@
                         </div>
                         <div class="col-md-7">
                             <div class="product-show">
-                                <div class="product-show-header text-left">
+                                <div class="product-show-header text-start">
                                     <h2><?php echo $name?></h2>
                                     <h3><?php echo product_price($price)?></h3>
                                 </div>
-                                <div class="product-show-body text-left">
+                                <div class="product-show-body mt-5 text-start">
                                     <h3>Mô tả sản phẩm</h3>
                                     <hr>
                                     <p><?php echo $description?></p>
@@ -86,15 +85,16 @@
                                     <h3>Thông tin sản phẩm</h3>
                                     <hr>
                                 </div>
-                                <div class="product-show-footer text-left">
+                                <hr>
+                                <div class="product-show-footer mt-5 text-start">
                                     <div class="footer-left">
                                         <div class="footer-left--color">
-                                            <h4>Màu sắc</h4>
+                                            <h4 class="fs-5">Màu sắc</h4>
                                             <div class="color">
                                                 <?php
                                                     foreach ($color as $index => $value) {
                                                         echo "
-                                                            <div class='color-item'>
+                                                            <div class='color-item fs-6'>
                                                                 <input style='display: none;' type='radio' name='color' id='color-$index' value='$value'>
                                                                 <label for='color-$index' style='background-color: $value'></label>
                                                             </div>
@@ -103,13 +103,13 @@
                                                 ?>
                                             </div>
                                         </div>
-                                        <div class="footer-left--size">
-                                            <h4>Kích thước</h4>
+                                        <div class="footer-left--size mt-5">
+                                            <h4 class="fs-5">Kích thước</h4>
                                             <div class="size">
                                                 <?php
                                                     foreach ($size as $index => $value) {
                                                         echo "
-                                                            <div class='size-item'>
+                                                            <div class='size-item fs-6'>
                                                                 <input type='radio' name='size' id='size-$index' value='$value'>
                                                                 <label for='size-$index'>$value</label>
                                                             </div>
@@ -121,7 +121,7 @@
                                     </div>
 
                                     <div class="footer-right">
-                                        <button class="btn bg-cart"><ion-icon name="cart-outline"></ion-icon>Thêm vào giỏ hàng</button>
+                                        <button class="bg-cart"><ion-icon name="cart-outline"></ion-icon>Thêm vào giỏ hàng</button>
                                     </div>
                                 </div>
                             </div>
@@ -142,5 +142,18 @@
     <?php
         include_once './JS/handleDetailProduct.php';
     ?>
+	<script>
+		window.onscroll = function() {sCrollHeader()};
+        window.onload = function() {sCrollHeader()};
+
+		function sCrollHeader() {
+			if (document.documentElement.scrollTop > 50) {
+				document.getElementById("header").style.backgroundColor = "#e7e7e7";
+			}
+			else  {
+				document.getElementById("header").style.backgroundColor = "transparent";
+			}
+		}
+	</script>
 </body>
 </html>

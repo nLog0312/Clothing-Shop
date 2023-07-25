@@ -50,7 +50,7 @@
 
             <div class="bottom-content">
                 <li class="">
-                    <a href="../">
+                    <a href="../../../Clothing-Shop/logout.php">
                         <i class='bx bx-exit icon' ></i>
                         <span class="text nav-text">Đăng xuất</span>
                     </a>

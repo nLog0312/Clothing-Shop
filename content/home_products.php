@@ -1,5 +1,5 @@
 <div id="body">
-    <div class="container d-flex justify-content-center mb-50">
+    <div class="container d-flex mb-50">
         <div class="row">
 
         <?php
@@ -28,28 +28,21 @@
                     }
         ?>
 
-            <div class="col-md-4 mt-2">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="card-img-actions">
-                            <?php
-                                echo "
-                                <object style='position: absolute; left: 0; max-height: 350px; min-height: 350px;' class='card-img img-fluid img-rounded' width='96' data='./admin/ProductsManage/photos/$image' type='image/png'>
-                                    <img style='max-height: 350px; min-height: 350px;' src='./admin/menu/IMG/logo.png' class='card-img img-fluid' width='96' alt=''>
-                                </object>";
-                            ?>
-                        </div>
+            <div class="card ms-3 mt-3" style="width: 18rem;">
+                <?php
+                    echo "
+                    <object style='max-height: 16.5rem;' class='card-img-top card-img mt-1 border' data='./admin/ProductsManage/photos/$image' type='image/png'>
+                        <img src='./admin/menu/IMG/logo.png' class='card-img-top card-img mt-1 border' alt=''>
+                    </object>";
+                ?>
+                <div class="card-body">
+                    <div class="mb-2">
+                        <h6 class="font-weight-semibold mb-2">
+                            <a href="./Product.php?id= <?php echo $id;?>" class="text-default mb-2"><?php echo $name;?></a>
+                        </h6>
                     </div>
-                    <div class="card-body bg-light text-center">
-                        <div class="mb-2">
-                            <h6 class="font-weight-semibold mb-2">
-                                <a href="./Product.php?id= <?php echo $id;?>" class="text-default mb-2"><?php echo $name;?></a>
-                            </h6>
-                        </div>
-                        <h3 class="mb-0 font-weight-semibold"><?php echo product_price($price);?></h3>
-                        
-                        <button type="button" class="btn bg-cart"><ion-icon name="cart-outline"></ion-icon>Thêm vào giỏ hàng</button>
-                    </div>
+                    <h3 class="mb-0 font-weight-semibold"><?php echo product_price($price);?></h3>
+                    <button type="button" class="bg-cart"><ion-icon name="cart-outline"></ion-icon>Thêm vào giỏ hàng</button>
                 </div>
             </div>
 

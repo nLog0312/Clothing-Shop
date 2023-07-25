@@ -40,8 +40,6 @@
     const btnSubmit = document.querySelector('#signup button[type="submit"]');
     
     repeatPassword.addEventListener('keyup', function() {
-        console.log(repeatPassword.value);
-        console.log(password.value);
         if (repeatPassword.value != password.value) {
             repeatPassword.classList.add('active');
             btnSubmit.disabled = true;
@@ -71,6 +69,4 @@
         xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
         xhttp.send();
     });
-
-    
 </script>

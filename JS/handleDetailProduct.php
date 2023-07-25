@@ -34,6 +34,7 @@
         let lstSize = document.querySelectorAll('.size-item input');
         let btnCart = document.querySelector('.footer-right button');
         btnCart.disabled = true;
+        btnCart.style.cursor = 'not-allowed';
         let color = '';
         let size = '';
         lstColor.forEach((input, index) => {
@@ -57,8 +58,10 @@
         function checkValidate() {
             if (color == '' || size == '') {
                 btnCart.disabled = true;
+                btnCart.style.cursor = 'not-allowed';
             } else {
                 btnCart.disabled = false;
+                btnCart.style.cursor = 'pointer';
             }
         }
     </script>

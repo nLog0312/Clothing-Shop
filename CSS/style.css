@@ -14,6 +14,7 @@ body {
     width: 100%;
     z-index: 1;
 }
+
 .container-fluid {
     padding: 0 100px;
 }
@@ -23,7 +24,8 @@ body {
     filter: contrast(1);
 }
 #body {
-    margin-top: 72px;
+    margin-top: 100px;
+    margin-bottom: 50px;
 }
 #footer {
     min-height: 50px;
@@ -208,21 +210,6 @@ span.psw {
     border-radius: .1875rem;
 }
 
-.card-img-actions {
-    position: relative;
-    min-height: 350px;
-}
-.card-body {
-    -ms-flex: 1 1 auto;
-    flex: 1 1 auto;
-    padding: 1.25rem;
-    text-align: center;
-}
-
-.card-img{
-    width: 330px;
-}
-
 .star{
     color: red;
 }
@@ -237,7 +224,6 @@ span.psw {
 }
 
 .bg-cart:hover {
-    
     color:#fff;
 }
 

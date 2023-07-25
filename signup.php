@@ -1,5 +1,5 @@
 <?php
-    $name = $_POST['username'];
+    $username = $_POST['username'];
     $email = $_POST['email'];
     $password = $_POST['psw'];
 
@@ -12,13 +12,22 @@
     $number_of_rows = mysqli_fetch_array($result)['COUNT(*)'];
 
     if ($number_of_rows > 0) {
-        echo "Email đã tồn tại";
+        echo "Email đã được đăng ký tài khoản";
     } else {
         $sql = "
-            INSERT INTO customers (name, email, password)
-            VALUES ('$name', '$email', '$password')
+            INSERT INTO customers (username, email, password)
+            VALUES ('$username', '$email', '$password')
+        ";
+
+        $sqlGetId = "
+            SELECT id FROM customers
+            WHERE email = '$email'
         ";
         mysqli_query($connect, $sql);
+        $id = mysqli_fetch_array(mysqli_query($connect, $sqlGetId))['id'];
+        session_start();
+        $_SESSION['id'] = $id;
+        $_SESSION['username'] = $username;
         
         header('Location: index.php');
     }

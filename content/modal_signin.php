@@ -6,8 +6,8 @@
 
         <div class="container-main">
             <div class="container-top">
-                <label for="uname"><b>Tài Khoản</b></label>
-                <input type="text" placeholder="" name="uname" required>
+                <label for="unameoremail"><b>Tài Khoản hoặc Email</b></label>
+                <input type="text" placeholder="" name="unameoremail" required>
 
                 <label for="psw"><b>Mật Khẩu</b></label>
                 <input type="password" placeholder="" name="psw" required>
@@ -23,7 +23,7 @@
 
         <div class="container-cancel" style="background-color:#f1f1f1">
             <button type="button" onclick="document.getElementById('signin').style.display='none'" class="cancelbtn">Huỷ</button>
-            <span class="psw">Quên <a href="#">mật khẩu?</a></span>
+            <span class="psw"><a href="#">Quên mật khẩu?</a></span>
         </div>
     </form>
 </div>
