@@ -99,3 +99,18 @@
 .active {
     border: 1px solid red !important;
 }
+
+.zoom {
+    /* width: max-content; */
+    position: relative;
+}
+
+#imgZoom {
+    position: absolute;
+    left: 0;
+    transform: scale(1.2);
+    pointer-events: none;
+    --zoom-x: 50%;
+    --zoom-y: 50%;
+    clip-path: circle(100px at var(--zoom-x) var(--zoom-y));
+}

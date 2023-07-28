@@ -6,8 +6,8 @@
 
         <div class="container-main">
             <div class="container-top">
-                <label for="username"><b>Tên đăng nhập</b></label>
-                <input type="text" placeholder="Tên đăng nhập..." name="username" required>
+                <label for="phone"><b>Số điện thoại</b></label>
+                <input type="text" placeholder="Số điện thoại..." name="phone" required>
                 <?php
                     if (isset($_SESSION['error'])) {
                         echo '<label style="color: red;" for="error">' . $_SESSION['error'] . '</label>';
@@ -64,9 +64,13 @@
         if (repeatPassword.value != password.value) {
             repeatPassword.classList.add('active');
             btnSubmit.disabled = true;
+            btnSubmit.style.cursor = 'not-allowed';
+            repeatPassword.style.border = '1px solid red';
         } else {
             repeatPassword.classList.remove('active');
             btnSubmit.disabled = false;
+            btnSubmit.style.cursor = 'pointer';
+            repeatPassword.style.border = '1px solid #ccc';
         }
     });
 

@@ -5,9 +5,17 @@
         </div>
 
         <div class="container-main">
+            <?php
+                if (isset($_SESSION['login'])) {
+                    echo '<label class="text-warning">' . $_SESSION['login'] . '</label>';
+                    unset($_SESSION['login']);
+
+                    echo '<script>document.getElementById("signin").style.display="block"</script>';
+                }
+            ?>
             <div class="container-top">
-                <label for="unameoremail"><b>Tài Khoản hoặc Email</b></label>
-                <input class="form-control" type="text" placeholder="Tài khoản..." name="unameoremail" required>
+                <label for="phoneoremail"><b>Số điện thoại hoặc Email</b></label>
+                <input class="form-control" type="text" placeholder="Số điện thoại hoặc Email..." name="phoneoremail" required>
 
                 <label for="psw"><b>Mật Khẩu</b></label>
                 <div class="input-group mb-3">

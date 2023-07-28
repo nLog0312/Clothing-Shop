@@ -1,25 +1,25 @@
 <?php
-    $username = $_POST['username'];
+    $phone = $_POST['phone'];
     $email = $_POST['email'];
     $password = $_POST['psw'];
 
     require_once './admin/root/connect.php';
     $sql = "
         SELECT COUNT(*) FROM customers
-        WHERE username = '$username'
+        WHERE phone = '$phone'
     ";
     $result = mysqli_query($connect, $sql);
     $number_of_rows = mysqli_fetch_array($result)['COUNT(*)'];
 
     if ($number_of_rows > 0) {
         session_start();
-        $_SESSION['error'] = 'Tài khoản đã được sử dụng';
+        $_SESSION['error'] = 'Số điện thoại đã được đăng ký tài khoản khác';
         header('Location: index.php');
         exit();
     } else {
         $sql = "
-            INSERT INTO customers (username, email, password)
-            VALUES ('$username', '$email', '$password')
+            INSERT INTO customers (phone, email, password)
+            VALUES ('$phone', '$email', '$password')
         ";
 
         $sqlGetId = "
@@ -30,7 +30,7 @@
         $id = mysqli_fetch_array(mysqli_query($connect, $sqlGetId))['id'];
         session_start();
         $_SESSION['id'] = $id;
-        $_SESSION['username'] = $username;
+        $_SESSION['phone'] = $phone;
         $token = uniqid('user_', true);
         $sql = "
             UPDATE `customers`

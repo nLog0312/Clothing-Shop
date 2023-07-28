@@ -1,6 +1,6 @@
 <?php
     session_start();
-    $unameoremail = $_POST['unameoremail'];
+    $phoneoremail = $_POST['phoneoremail'];
     $password = $_POST['psw'];
     if(isset($_POST['remember'])) {
         $remember = true;
@@ -11,7 +11,7 @@
     require_once './admin/root/connect.php';
     $sql = "
         SELECT * FROM `customers`
-        WHERE (`customers`.`username` = '$unameoremail' OR `customers`.`email` = '$unameoremail') AND `customers`.`password` = '$password'
+        WHERE (`customers`.`phone` = '$phoneoremail' OR `customers`.`email` = '$phoneoremail') AND `customers`.`password` = '$password'
     ";
     $result = mysqli_query($connect, $sql);
     $number_rows = mysqli_num_rows($result);
@@ -19,8 +19,9 @@
     if ($number_rows == 1) {
         $row = mysqli_fetch_array($result);
         $_SESSION['id'] = $row['id'];
-        $_SESSION['username'] = $row['username'];
-        if ($remember && $unameoremail != 'admin') {
+        $_SESSION['phone'] = $row['phone'];
+        $_SESSION['fullname'] = $row['fullname'];
+        if ($remember && $phoneoremail != 'admin') {
             $token = uniqid('user_', true);
             $sql = "
                 UPDATE `customers`

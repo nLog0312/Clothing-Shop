@@ -1,10 +1,12 @@
 <script>
         let lstImg = document.querySelectorAll('.list-img .img');
         let imgFather = document.querySelector('.product-img .img-father');
+        let imgFatherZoom = document.querySelector('#imgZoom');
         lstImg.forEach(img => {
             img.addEventListener('click', function() {
                 let src = this.querySelector('input').src;
                 imgFather.src = src;
+                imgFatherZoom.src = src;
             })
         })
 
@@ -64,4 +66,23 @@
                 btnCart.style.cursor = 'pointer';
             }
         }
+
+        // handle zoom img
+        let zoom = document.querySelector('.zoom');
+        let imgZoom = document.querySelector('#imgZoom');
+        zoom.addEventListener('mousemove', (e) => {
+            imgZoom.style.opacity = 1;
+            let positionPx = e.x - zoom.getBoundingClientRect().left;
+            let positionX = (positionPx / zoom.offsetWidth) * 100;
+
+            let positionPy = e.y - zoom.getBoundingClientRect().top;
+            let positionY = (positionPy / zoom.offsetHeight) * 100;
+
+            imgZoom.style.setProperty('--zoom-x', positionX + '%');
+            imgZoom.style.setProperty('--zoom-y', positionY + '%');
+        })
+
+        zoom.addEventListener('mouseout', (e) => {
+            imgZoom.style.opacity = 0;
+        })
     </script>

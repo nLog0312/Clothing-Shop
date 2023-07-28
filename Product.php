@@ -51,8 +51,9 @@
                     <div class="row">
                         <div class="col-md-5">
                             <div class="all-img_product">
-                                <div class="product-img border border-dark-subtle rounded">
+                                <div class="zoom product-img border border-dark-subtle rounded">
                                     <img class="img-father img-thumbnail" src="./admin/ProductsManage/photos/<?php echo $image[0]?>" alt="">
+                                    <img id="imgZoom" class="img-father img-thumbnail" src="./admin/ProductsManage/photos/<?php echo $image[0]?>" alt="">
                                 </div>
                                 <div class="product-img--bottom">
                                     <div class="prevImg"><ion-icon name="chevron-back-outline"></ion-icon></div>
@@ -154,6 +155,49 @@
 				document.getElementById("header").style.backgroundColor = "transparent";
 			}
 		}
+
+        let btnAddCart = document.querySelector('.footer-right button');
+        <?php
+            if (isset($_SESSION['phone'])) {
+                echo "
+                    btnAddCart.addEventListener('click', function() {
+                        let color = document.querySelector('input[name=color]:checked').value;
+                        let size = document.querySelector('input[name=size]:checked').value;
+                        let id = $id;
+                        let phone = '".$_SESSION['phone']."';
+                        let data = {
+                            color: color,
+                            size: size,
+                            id: id,
+                            phone: phone
+                        }
+                        let url = './admin/root/addCart.php';
+                        fetch(url, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(data)
+                        })
+                        .then(response => response.text())
+                        .then(data => {
+                            if (data == 'success') {
+                                alert('Thêm vào giỏ hàng thành công');
+                            } else {
+                                alert('Thêm vào giỏ hàng thất bại');
+                            }
+                        })
+                    })
+                ";
+            } else {
+                $_SESSION['login'] = "Bạn cần đăng nhập để thêm sản phẩm vào giỏ hàng";
+                echo "
+                    btnAddCart.addEventListener('click', function() {
+                        window.location.href = './index.php';
+                    })
+                ";
+            }
+        ?>
 	</script>
 </body>
 </html>

@@ -40,7 +40,7 @@
                     if ($number_rows == 1) {
                         $row = mysqli_fetch_array($result);
                         $_SESSION['id'] = $row['id'];
-                        $_SESSION['username'] = $row['username'];
+                        $_SESSION['phone'] = $row['phone'];
                     }
                 }
 
@@ -58,19 +58,34 @@
                             </ul>
                         </div>
                     ';
-                } elseif ($_SESSION['username'] != "admin") {
-                    echo '
-                        <div class="dropdown">
-                            <button style="margin-bottom: 0;" class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                            '.$_SESSION['username'].'
-                            </button>
-                            <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton1">
-                                <li><a class="dropdown-item" href="./profile.php">Thông tin cá nhân</a></li>
-                                <li><a class="dropdown-item mt-1" href="./order.php">Đơn Hàng</a></li>
-                                <li><a class="dropdown-item mt-1" href="./logout.php">Đăng xuất</a></li>
-                            </ul>
-                        </div>
-                    ';
+                } elseif ($_SESSION['phone'] != "admin") {
+                    if (isset($_SESSION['fullname']) && $_SESSION['fullname'] != "") {
+                        echo '
+                            <div class="dropdown">
+                                <button style="margin-bottom: 0;" class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                '.$_SESSION['fullname'].'
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li><a class="dropdown-item" href="./profile.php?id='. $_SESSION['id'] .'">Thông tin cá nhân</a></li>
+                                    <li><a class="dropdown-item mt-1" href="./order.php">Đơn Hàng</a></li>
+                                    <li><a class="dropdown-item mt-1" href="./logout.php">Đăng xuất</a></li>
+                                </ul>
+                            </div>
+                        ';
+                    } else {
+                        echo '
+                            <div class="dropdown">
+                                <button style="margin-bottom: 0;" class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                '.$_SESSION['phone'].'
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                <li><a class="dropdown-item" href="./profile.php?id='. $_SESSION['id'] .'">Thông tin cá nhân</a></li>
+                                    <li><a class="dropdown-item mt-1" href="./order.php">Đơn Hàng</a></li>
+                                    <li><a class="dropdown-item mt-1" href="./logout.php">Đăng xuất</a></li>
+                                </ul>
+                            </div>
+                        ';
+                    }
                 } else {
                     header('location: ./admin/root/index.php');
                 }

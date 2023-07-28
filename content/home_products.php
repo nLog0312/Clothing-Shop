@@ -38,11 +38,13 @@
                 <div class="card-body d-flex flex-column align-items-center">
                     <div class="mb-2">
                         <h6 class="font-weight-semibold mb-2">
-                            <a href="./Product.php?id= <?php echo $id;?>" class="text-default mb-2"><?php echo $name;?></a>
+                            <a href="./Product.php?id= <?php echo $id;?>" class="text-secondary-emphasis mb-2"><?php echo $name;?></a>
                         </h6>
                     </div>
                     <h3 class="mb-0 font-weight-semibold"><?php echo product_price($price);?></h3>
-                    <button type="button" class="bg-cart"><ion-icon name="cart-outline"></ion-icon>Thêm vào giỏ hàng</button>
+                    <button type="button" class="btn btn-info">
+                        <a href="./Product.php?id= <?php echo $id;?>" class="text-light mb-2">Xem chi tiết sản phẩm</a>
+                    </button>
                 </div>
             </div>
 

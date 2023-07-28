@@ -11,18 +11,18 @@
         });
         
         // When the user clicks anywhere outside of the modal, close it
-        if (document.getElementById("signin") || document.getElementById("signup")) {
-            // Get the modal
-            var modal_signin = document.getElementById("signin");
-            var modal_signup = document.getElementById("signup");
-            window.onclick = function(event) {
-                if (event.target == modal_signin) {
-                    modal_signin.style.display = "none";
-                } else if (event.target == modal_signup) {
-                    modal_signup.style.display = "none";
-                }
-            }
-        }
+        // if (document.getElementById("signin") || document.getElementById("signup")) {
+        //     // Get the modal
+        //     var modal_signin = document.getElementById("signin");
+        //     var modal_signup = document.getElementById("signup");
+        //     window.onclick = function(event) {
+        //         if (event.target == modal_signin) {
+        //             modal_signin.style.display = "none";
+        //         } else if (event.target == modal_signup) {
+        //             modal_signup.style.display = "none";
+        //         }
+        //     }
+        // }
 
         // Toggle password Sign In
         function togglePwdSignIn() {
