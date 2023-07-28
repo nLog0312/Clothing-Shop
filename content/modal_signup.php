@@ -8,16 +8,37 @@
             <div class="container-top">
                 <label for="username"><b>Tên đăng nhập</b></label>
                 <input type="text" placeholder="Tên đăng nhập..." name="username" required>
+                <?php
+                    if (isset($_SESSION['error'])) {
+                        echo '<label style="color: red;" for="error">' . $_SESSION['error'] . '</label>';
+                        unset($_SESSION['error']);
+
+                        echo '<script>document.getElementById("signup").style.display="block"</script>';
+                    }
+                ?>
+
 
                 <label for="email"><b>Email</b></label>
                 <input type="text" placeholder="Email..." name="email" required>
                 <label style="color: red;" for="error"></label>
 
                 <label for="psw"><b>Mật khẩu</b></label>
-                <input type="password" placeholder="Mật khẩu..." name="psw" required>
+                <div class="psw input-group mb-3">
+                    <input class="form-control" type="password" placeholder="Mật khẩu..." name="psw" required>
+                    <button onclick="togglePwdSignUp()" class="btn btn-outline-secondary" type="button" id="button-addon2">
+                        <ion-icon name="eye-outline" style="cursor: pointer"></ion-icon>
+                        <ion-icon hidden name="eye-off-outline" style="cursor: pointer"></ion-icon>
+                    </button>
+                </div>
 
                 <label for="psw-repeat"><b>Nhập lại mật khẩu</b></label>
-                <input type="password" placeholder="Nhập lại mật khẩu..." name="psw-repeat" required>
+                <div class="psw-repeat input-group mb-3">
+                    <input class="form-control" type="password" placeholder="Nhập lại mật khẩu..." name="psw-repeat" required>
+                    <button onclick="togglePwd()" class="btn btn-outline-secondary" type="button" id="button-addon2">
+                        <ion-icon name="eye-outline" style="cursor: pointer"></ion-icon>
+                        <ion-icon hidden name="eye-off-outline" style="cursor: pointer"></ion-icon>
+                    </button>
+                </div>
                 
                 <label>
                     <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me

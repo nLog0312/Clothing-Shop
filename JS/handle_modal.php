@@ -23,5 +23,56 @@
                 }
             }
         }
+
+        // Toggle password Sign In
+        function togglePwdSignIn() {
+            var pwd = document.querySelector("#signin input[name=psw]");
+            var iconEye = document.querySelector("#signin ion-icon[name=eye-outline]");
+            var iconEyeOff = document.querySelector("#signin ion-icon[name=eye-off-outline]");
+
+            if (pwd.type === "password") {
+                pwd.type = "text";
+                iconEye.hidden = true;
+                iconEyeOff.hidden = false;
+            } else {
+                pwd.type = "password";
+                iconEye.hidden = false;
+                iconEyeOff.hidden = true;
+            }
+        }
+
+        // Toggle password Sign Up
+        function togglePwdSignUp() {
+            var pwd = document.querySelector("#signup .psw input[name=psw]");
+            var iconEye = document.querySelector("#signup .psw ion-icon[name=eye-outline]");
+            var iconEyeOff = document.querySelector("#signup .psw ion-icon[name=eye-off-outline]");
+
+            if (pwd.type === "password") {
+                pwd.type = "text";
+                iconEye.hidden = true;
+                iconEyeOff.hidden = false;
+            } else {
+                pwd.type = "password";
+                iconEye.hidden = false;
+                iconEyeOff.hidden = true;
+            }
+        }
+
+        // Toggle password repeat Sign Up
+        function togglePwd() {
+            var pwd = document.querySelector("#signup .psw-repeat input[name=psw-repeat]");
+            var iconEye = document.querySelector("#signup .psw-repeat ion-icon[name=eye-outline]");
+            var iconEyeOff = document.querySelector("#signup .psw-repeat ion-icon[name=eye-off-outline]");
+
+            if (pwd.type === "password") {
+                pwd.type = "text";
+                iconEye.hidden = true;
+                iconEyeOff.hidden = false;
+            } else {
+                pwd.type = "password";
+                iconEye.hidden = false;
+                iconEyeOff.hidden = true;
+            }
+        }
     </script> ';
 ?>

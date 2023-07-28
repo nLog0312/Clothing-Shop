@@ -27,6 +27,24 @@
             </div>
             <?php
                 session_start();
+                if (isset($_COOKIE['remember'])) {
+                    $token = $_COOKIE['remember'];
+                    require_once './admin/root/connect.php';
+                    $sql = "
+                        SELECT * FROM `customers`
+                        WHERE `customers`.`token` = '$token'
+                    ";
+                    $result = mysqli_query($connect, $sql);
+                    $number_rows = mysqli_num_rows($result);
+                    
+                    if ($number_rows == 1) {
+                        $row = mysqli_fetch_array($result);
+                        $_SESSION['id'] = $row['id'];
+                        $_SESSION['username'] = $row['username'];
+                    }
+                }
+
+                
                 if (empty($_SESSION['id'])) {
                     echo '
                         <div class="navbar-right">

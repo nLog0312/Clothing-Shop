@@ -35,7 +35,7 @@
                         <img src='./admin/menu/IMG/logo.png' class='card-img-top card-img mt-1 border' alt=''>
                     </object>";
                 ?>
-                <div class="card-body">
+                <div class="card-body d-flex flex-column align-items-center">
                     <div class="mb-2">
                         <h6 class="font-weight-semibold mb-2">
                             <a href="./Product.php?id= <?php echo $id;?>" class="text-default mb-2"><?php echo $name;?></a>
