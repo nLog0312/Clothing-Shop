@@ -1,6 +1,7 @@
 <?php
     session_start();
     $phone =  $_SESSION['phone'];
+    $id = $_GET['id'];
     require_once './admin/root/connect.php';
 
     $type = $_GET['type'];
@@ -24,9 +25,14 @@
             WHERE `phone` = '$phone'
         ";
         mysqli_query($connect, $sql);
-        $_SESSION['toast'] = 'Cập nhật thông tin thành công';
-        header('location: ./index.php');
-    } else if($type == 'changePassword') {
+        if (mysqli_query($connect, $sql)) {
+            $_SESSION['toast'] = 'Cập nhật thông tin thành công';
+            header('location: ./profile.php?id=' . $id . '');
+        } else {
+            $_SESSION['toast'] = 'Cập nhật thông tin thất bại';
+            header('location: ./profile.php?id=' . $id . '');
+        }
+    } else if($type == 'changePwd') {
         $oldpassword = $_POST['oldpassword'];
         $newpassword = $_POST['newpassword'];
         $renewpassword = $_POST['renewpassword'];
@@ -38,22 +44,22 @@
         $result = mysqli_query($connect, $sql);
         $number_rows = mysqli_num_rows($result);
         if ($number_rows == 1) {
-            if ($newpassword == $renewpassword) {
-                $sql = "
-                    UPDATE `customers`
-                    SET `password`='$newpassword'
-                    WHERE `phone` = '$phone'
-                ";
-                mysqli_query($connect, $sql);
-                $_SESSION['error'] = 'Đổi mật khẩu thành công';
-                header('location: ./index.php');
+            $sql = "
+                UPDATE `customers`
+                SET `password`='$newpassword'
+                WHERE `phone` = '$phone'
+            ";
+            mysqli_query($connect, $sql);
+            if (mysqli_query($connect, $sql)) {
+                $_SESSION['toast'] = 'Đổi mật khẩu thành công';
+                header('location: ./profile.php?id=' . $id . '');
             } else {
-                $_SESSION['error'] = 'Mật khẩu mới không khớp';
-                header('location: ./index.php');
+                $_SESSION['toast'] = 'Đổi mật khẩu thất bại';
+                header('location: ./profile.php?id=' . $id . '');
             }
         } else {
-            $_SESSION['error'] = 'Mật khẩu cũ không đúng';
-            header('location: ./index.php');
+            $_SESSION['toast'] = 'Mật khẩu cũ không đúng';
+            header('location: ./profile.php?id=' . $id . '');
         }
     }
 ?>

@@ -5,3 +5,6 @@
         <a href="https://www.instagram.com/nlog0312/" target="_blank"><img src="https://img.icons8.com/fluent/48/000000/instagram-new.png"/></a>
     </div>
 </div>
+<?php
+    mysqli_close($connect);
+?>

@@ -1,3 +1,6 @@
+<?php
+	session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,6 +19,28 @@
 </head>
 <body>
 	<div id="main">
+		<div class="toast-container position-fixed p-3" style="top: 80px; right: 50px;">
+			<div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+				<div class="toast-header">
+					<strong class="me-auto">Thông Báo</strong>
+					<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+				</div>
+				<div class="toast-body">
+					<?php
+						if (isset($_SESSION['toast-index'])) {
+							echo $_SESSION['toast-index'];
+							unset($_SESSION['toast-index']);
+
+							echo '<script>
+									var toastLiveExample = document.getElementById("liveToast")
+									var toast = new bootstrap.Toast(toastLiveExample)
+									toast.show()
+								</script>';
+						}
+					?>
+				</div>
+			</div>
+		</div>
 		<?php
 			include_once './admin/root/func.php';
 			include_once './Header.php';

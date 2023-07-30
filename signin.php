@@ -21,7 +21,7 @@
         $_SESSION['id'] = $row['id'];
         $_SESSION['phone'] = $row['phone'];
         $_SESSION['fullname'] = $row['fullname'];
-        if ($remember && $phoneoremail != 'admin') {
+        if ($remember && $_SESSION['phone'] != 'admin') {
             $token = uniqid('user_', true);
             $sql = "
                 UPDATE `customers`
@@ -30,10 +30,13 @@
             ";
             mysqli_query($connect, $sql);
             setcookie('remember', $token, time() + 60*60*24*2);
+            header('location: ./index.php');
+        } elseif ($_SESSION['phone'] == 'admin') {
+            header('location: ./admin/root/index.php');
+        } else {
+            header('location: ./index.php');
         }
-
-        header('location: ./index.php');
-        exit();
+        $_SESSION['toast-index'] = 'Chào mừng ' . $_SESSION['fullname'] . ' đến với Clothing Shop';
     } else {
         $_SESSION['error'] = 'Tài khoản hoặc mật khẩu không đúng';
         header('location: ./index.php');

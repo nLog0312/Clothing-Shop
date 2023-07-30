@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	if (!isset($_SESSION['username'])) {
+	if (!isset($_SESSION['phone']) || isset($_SESSION['phone']) != 'admin') {
 		header("Location: ../../index.php");
 	}
 	include_once '../menu/menu_content-header.php';

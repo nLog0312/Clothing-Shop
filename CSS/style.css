@@ -26,6 +26,7 @@ body {
 #body {
     margin-top: 100px;
     margin-bottom: 50px;
+    min-height: calc(100vh - 226px);
 }
 #footer {
     min-height: 50px;
