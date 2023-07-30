@@ -12,6 +12,9 @@
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 	<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 
+    <!-- Github tỉnh huyện xã -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+
 	<link rel="stylesheet" href="./CSS/style.css">
     <link rel="stylesheet" href="./CSS/styleProfile.css">
 </head>
@@ -21,6 +24,9 @@
                 include_once './admin/root/func.php';
                 include_once './admin/root/connect.php';
                 include_once './Header.php';
+                if (!isset($_SESSION['phone'])) {
+                    header('Location: index.php');
+                }
                 
                 $id = $_GET['id'];
                 $name; $price; $description; $type;
@@ -43,10 +49,13 @@
                                         </h6>
                                         <ul class="nav nav-tabs" id="myTab">
                                             <li class="nav-item">
-                                                <a class="nav-link active" id="home-tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Thông tin cá nhân</a>
+                                                <a class="nav-link active" id="home-tab" href="#" role="tab" aria-controls="home" aria-selected="true">Thông tin cá nhân</a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link" id="profile-tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Setting</a>
+                                                <a class="nav-link" id="profile-tab" href="#" role="tab" aria-controls="profile" aria-selected="false">Sửa thông tin cá nhân</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" id="changepwd-tab" href="#" role="tab" aria-controls="changepwd" aria-selected="false">Đổi mật khẩu</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -55,7 +64,7 @@
                             <div class="row justify-content-center">
                                 <div class="col-md-7">
                                     <div class="tab-content profile-tab" id="myTabContent">
-                                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                        <div class="ms-3 mb-5 mt-2 tab-pane fade show active" id="tab-home" role="tabpanel" aria-labelledby="home-tab">
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <label>Họ và tên</label>
@@ -89,6 +98,136 @@
                                                 </div>
                                             </div>
                                         </div>
+
+                                        <div class="ms-3 mb-5 mt-2 tab-pane fade" id="tab-profile" role="tabpanel" aria-labelledby="profile-tab">
+                                            <form action="updateCustomer.php?type=changeInfo" method="POST">
+                                                <div class="row mb-3">
+                                                    <div class="col-md-6">
+                                                        <label>Họ và tên</label>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <input type="text" name="fullname" class="form-control" value="' . $each['fullname'] . '">
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-3">
+                                                    <div class="col-md-6">
+                                                        <label>Số điện thoại</label>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <input disabled type="text" name="phone" class="form-control" value="' . $each['phone'] . '">
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-3">
+                                                    <div class="col-md-6">
+                                                        <label>Email</label>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <input disabled type="text" name="email" class="form-control" value="' . $each['email'] . '">
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-3"">
+                                                    <div class="col-md-6">
+                                                        <label>Tỉnh/Thành phố</label>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <select name="conscious" class="form-select form-select-sm mb-3" id="city" aria-label=".form-select-sm">';
+                                                            if ($each['conscious'] != '') {
+                                                                echo '<option value="' . $each['conscious'] . '" selected>' . $each['conscious'] . '</option>';
+                                                            } else {
+                                                                echo '<option value="" selected>Chọn tỉnh thành</option>';
+                                                            }
+                                                    echo '</select>
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-3"">
+                                                    <div class="col-md-6">
+                                                        <label>Quận/Huyện</label>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <select name="district" class="form-select form-select-sm mb-3" id="district" aria-label=".form-select-sm">';
+                                                            if ($each['district'] != '') {
+                                                                echo '<option value="' . $each['district'] . '" selected>' . $each['district'] . '</option>';
+                                                            } else {
+                                                                echo '<option value="" selected>Chọn quận huyện</option>';
+                                                            }
+                                                    echo '</select>
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-3"">
+                                                    <div class="col-md-6">
+                                                        <label>Phường/Xã</label>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <select name="wards" class="form-select form-select-sm" id="ward" aria-label=".form-select-sm">';
+                                                            if ($each['wards'] != '') {
+                                                                echo '<option value="' . $each['wards'] . '" selected>' . $each['wards'] . '</option>';
+                                                            } else {
+                                                                echo '<option value="" selected>Chọn phường xã</option>';
+                                                            }
+                                                    echo '</select>
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-3">
+                                                    <div class="col-md-6">
+                                                        <label>Ngày Sinh</label>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <input onchange="onChangeDob()" type="date" name="dateofbirth" class="form-control" value="' . $each['dateofbirth'] . '">
+                                                        <label class="error-dob" style="color: red"></label>
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-3">
+                                                    <div class="col-md-6">
+                                                        <label>Địa chỉ nhận hàng</label>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <input type="text" name="deliveryaddress" class="form-control" value="' . $each['deliveryaddress'] . '">
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-3">
+                                                    <div class="col-md-6">
+                                                        <input type="submit" name="submit" class="btn btn-primary" value="Cập nhật">
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+
+                                        <div class="ms-3 mb-5 mt-2 tab-pane fade" id="tab-changepwd" role="tabpanel" aria-labelledby="changepwd-tab">
+                                            <form action="updateCustomer.php?type=changePwd" method="POST">
+                                                <div class="row mb-3">
+                                                    <div class="col-md-6">
+                                                        <label>Mật khẩu cũ</label>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <input type="password" name="oldpassword" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-3">
+                                                    <div class="col-md-6">
+                                                        <label>Mật khẩu mới</label>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <input type="password" name="newpassword" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-3">
+                                                    <div class="col-md-6">
+                                                        <label>Nhập lại mật khẩu mới</label>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <input type="password" name="renewpassword" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-3">
+                                                    <div class="col-md-6">
+                                                        <input type="hidden" name="id" value="' . $each['id'] . '">
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <input type="submit" name="submit" class="btn btn-primary" value="Cập nhật">
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -100,10 +239,6 @@
             include_once './Footer.php';
         ?>
     </div>
-
-    <?php
-        include_once './JS/handleDetailProduct.php';
-    ?>
 	<script>
 		window.onscroll = function() {sCrollHeader()};
         window.onload = function() {sCrollHeader()};
@@ -120,15 +255,95 @@
         // nav tabs
         var myTab = document.getElementById('myTab');
         var tabItem = myTab.querySelectorAll('.nav-link');
+        var tabHome = document.querySelector('#tab-home');
+        var tabProfile = document.querySelector('#tab-profile');
+        var tabChangePwd = document.querySelector('#tab-changepwd');
 
         tabItem.forEach(function(item) {
             item.addEventListener('click', function() {
                 tabItem.forEach(function(item) {
                     item.classList.remove('active');
                 })
+                
+                if (this.getAttribute('aria-controls') == 'home') {
+                    tabHome.classList.add('show', 'active');
+                    tabProfile.classList.remove('show', 'active');
+                    tabChangePwd.classList.remove('show', 'active');
+                }
+                else if (this.getAttribute('aria-controls') == 'profile') {
+                    tabHome.classList.remove('show', 'active');
+                    tabProfile.classList.add('show', 'active');
+                    tabChangePwd.classList.remove('show', 'active');
+                }
+                else {
+                    tabHome.classList.remove('show', 'active');
+                    tabProfile.classList.remove('show', 'active');
+                    tabChangePwd.classList.add('show', 'active');
+                }
                 this.classList.add('active');
             })
         })
+
+        // Render  city-district-ward
+        var citis = document.getElementById("city");
+        var districts = document.getElementById("district");
+        var wards = document.getElementById("ward");
+        var Parameter = {
+            url: "https://raw.githubusercontent.com/kenzouno1/DiaGioiHanhChinhVN/master/data.json",
+            method: "GET",
+            responseType: "application/json",
+        };
+        var promise = axios(Parameter);
+        promise.then(function (result) {
+            renderCity(result.data);
+        });
+
+        function renderCity(data) {
+            for (const x of data) {
+                citis.options[citis.options.length] = new Option(x.Name, x.Name);
+            }
+            citis.onchange = function () {
+                district.length = 1;
+                ward.length = 1;
+                if(this.value != ""){
+                const result = data.filter(n => n.Name === this.value);
+
+                for (const k of result[0].Districts) {
+                    district.options[district.options.length] = new Option(k.Name, k.Name);
+                }
+                }
+            };
+            district.onchange = function () {
+                ward.length = 1;
+                const dataCity = data.filter((n) => n.Name === citis.value);
+                if (this.value != "") {
+                const dataWards = dataCity[0].Districts.filter(n => n.Name === this.value)[0].Wards;
+
+                for (const w of dataWards) {
+                    wards.options[wards.options.length] = new Option(w.Name, w.Name);
+                }
+                }
+            };
+        }
+
+        // Change Date of birth
+        function onChangeDob() {
+            var dob = document.querySelector('input[type="date"]');
+            var dobValue = new Date(dob.value);
+            var today = new Date();
+            var age = today.getFullYear() - dobValue.getFullYear();
+            if (age < 18) {
+                document.querySelector('.error-dob').innerHTML = 'Bạn chưa đủ 18 tuổi';
+                document.querySelector('input[name="dateofbirth"]').style.borderColor = 'red';
+                document.querySelector('input[type="submit"]').disabled = true;
+                document.querySelector('input[type="submit"]').style.cursor = 'not-allowed';
+            } else {
+                document.querySelector('.error-dob').innerHTML = '';
+                document.querySelector('input[name="dateofbirth"]').style.borderColor = '#ced4da';
+                document.querySelector('input[type="submit"]').disabled = false;
+                document.querySelector('input[type="submit"]').style.cursor = 'pointer';
+            }
+        }
 	</script>
 </body>
 </html>

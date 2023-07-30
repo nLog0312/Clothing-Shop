@@ -13,7 +13,7 @@
 
     if ($number_of_rows > 0) {
         session_start();
-        $_SESSION['error'] = 'Số điện thoại đã được đăng ký tài khoản khác';
+        $_SESSION['error'] = 'Số điện thoại đã được đăng ký, mời bạn đăng nhập';
         header('Location: index.php');
         exit();
     } else {

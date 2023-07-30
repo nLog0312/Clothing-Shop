@@ -1,4 +1,10 @@
-<?php include_once '../menu/menu_content-header.php';?>
+<?php
+	session_start();
+	if (!isset($_SESSION['username'])) {
+		header("Location: ../../index.php");
+	}
+	include_once '../menu/menu_content-header.php';
+?>
 
 	<section class="information">
 		<div class="text">Bảng Điều Khiển</div>
