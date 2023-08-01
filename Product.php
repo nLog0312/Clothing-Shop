@@ -20,6 +20,28 @@
 </head>
 <body>
     <div id="main">
+		<div class="toast-container position-fixed p-3" style="top: 80px; right: 50px;">
+			<div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+				<div class="toast-header">
+					<strong class="me-auto">Thông Báo</strong>
+					<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+				</div>
+				<div class="toast-body">
+					<?php
+						if (isset($_SESSION['toast-product-detail'])) {
+							echo $_SESSION['toast-product-detail'];
+							unset($_SESSION['toast-product-detail']);
+
+							echo '<script>
+									var toastLiveExample = document.getElementById("liveToast")
+									var toast = new bootstrap.Toast(toastLiveExample)
+									toast.show()
+								</script>';
+						}
+					?>
+				</div>
+			</div>
+		</div>
         <?php
             include_once './admin/root/func.php';
             include_once './admin/root/connect.php';
@@ -160,47 +182,22 @@
 		}
 
         let btnAddCart = document.querySelector('.footer-right button');
+        btnAddCart.addEventListener('click', function() {
         <?php
             if (isset($_SESSION['phone'])) {
                 echo "
-                    btnAddCart.addEventListener('click', function() {
-                        let color = document.querySelector('input[name=color]:checked').value;
-                        let size = document.querySelector('input[name=size]:checked').value;
-                        let id = $id;
-                        let phone = '".$_SESSION['phone']."';
-                        let data = {
-                            color: color,
-                            size: size,
-                            id: id,
-                            phone: phone
-                        }
-                        let url = './admin/root/addCart.php';
-                        fetch(url, {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json'
-                            },
-                            body: JSON.stringify(data)
-                        })
-                        .then(response => response.text())
-                        .then(data => {
-                            if (data == 'success') {
-                                alert('Thêm vào giỏ hàng thành công');
-                            } else {
-                                alert('Thêm vào giỏ hàng thất bại');
-                            }
-                        })
-                    })
+                    let color = document.querySelector('input[name=color]:checked').value;
+                    let size = document.querySelector('input[name=size]:checked').value;
+                    let id = $id;
+                    window.location.href = './add_to_cart.php?id=' + id + '&color=' + color + '&size=' + size;
                 ";
             } else {
-                $_SESSION['login'] = "Bạn cần đăng nhập để thêm sản phẩm vào giỏ hàng";
                 echo "
-                    btnAddCart.addEventListener('click', function() {
-                        window.location.href = './index.php';
-                    })
+                    window.location.href = './add_to_cart.php';
                 ";
             }
         ?>
+        })
 	</script>
 </body>
 </html>

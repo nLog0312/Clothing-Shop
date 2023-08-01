@@ -66,7 +66,7 @@
                                 </button>
                                 <ul class="dropdown-menu dropdown-menu-right">
                                     <li><a class="dropdown-item" href="./profile.php?id='. $_SESSION['id'] .'">Thông tin cá nhân</a></li>
-                                    <li><a class="dropdown-item mt-1" href="./order.php">Đơn Hàng</a></li>
+                                    <li><a class="dropdown-item mt-1" href="./view_cart.php">Giỏ Hàng</a></li>
                                     <li><a class="dropdown-item mt-1" href="./logout.php">Đăng xuất</a></li>
                                 </ul>
                             </div>
@@ -79,7 +79,7 @@
                                 </button>
                                 <ul class="dropdown-menu dropdown-menu-right">
                                 <li><a class="dropdown-item" href="./profile.php?id='. $_SESSION['id'] .'">Thông tin cá nhân</a></li>
-                                    <li><a class="dropdown-item mt-1" href="./order.php">Đơn Hàng</a></li>
+                                    <li><a class="dropdown-item mt-1" href="./view_cart.php">Giỏ Hàng</a></li>
                                     <li><a class="dropdown-item mt-1" href="./logout.php">Đăng xuất</a></li>
                                 </ul>
                             </div>

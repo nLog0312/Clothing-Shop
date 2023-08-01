@@ -9,36 +9,7 @@
 	<section class="information">
 		<div class="text">Bảng Điều Khiển</div>
 		<div class="content">
-			<div class="content-header">
-				<div class="btn">
-					<a href="form_insert.php" class="btn btn-insert">Thêm sản phẩm mới</a>
-				</div>
-
-				<?php
-					$search = "";
-					if (isset($_GET['search'])) {
-						$search = $_GET['search'];
-					}
-				?>
-
-				<form action="" class="search">
-					<input type="text" name="search" id="" placeholder="Tìm kiếm" value="<?php echo $search?>">
-				</form>
-			</div>
-
-			<div class="content-body">
-				<table border="1">
-					<tr>
-						<th style="width:4%">STT</th>
-						<th style="width:27%">Tên</th>
-						<th style="width:27%">Giá</th>
-						<th style="width:27%">Kiểu</th>
-						<th style="width:15%" colspan="3">Thao Tác</th>
-					</tr>
-					
-					<?php include_once '../ProductsManage/showProducts.php';?>
-				</table>
-			</div>
+			<h6 style="font-size: 50px; margin-top: 100px; margin-left: 100px;">Không có ý tưởng làm trang dashboard nên thôi nhé =))))</h6>
 		</div>
 	</section>
 
