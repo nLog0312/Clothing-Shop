@@ -60,7 +60,7 @@
         ?>
         <div id="body">
             <?php
-                if (isset($_SESSION['cart'])) {
+                if (isset($_SESSION['cart']) && $_SESSION['cart'] != null) {
                     $cart = $_SESSION['cart'];
             ?>
             <section class="h-100">
@@ -105,15 +105,15 @@
                                         <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
                                             <!-- Quantity -->
                                             <div class="d-flex align-items-center mb-4" style="max-width: 300px">
-                                                <button class="btn btn-primary" onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
+                                                <button class="btn btn-primary" onclick="stepDown(<?php echo $each['id'];?>, <?php echo $each['price'];?>)">
                                                     <ion-icon style="margin: auto;" name="remove-outline"></ion-icon>
                                                 </button>
 
                                                 <div class="ms-1 me-1 form-outline">
-                                                    <input id="form1" min="0" name="quantity" value="<?php echo $each['quantity']?>" type="number" class="form-control" />
+                                                    <input oninput="updateQuantity(<?php echo $each['id'];?>, <?php echo $each['price'];?>, null)" id="form1" min="1" name="quantity_<?php echo $each['id'];?>" value="<?php echo $each['quantity']?>" type="number" class="form-control" />
                                                 </div>
 
-                                                <button class="btn btn-primary" onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
+                                                <button class="btn btn-primary" onclick="stepUp(<?php echo $each['id'];?>, <?php echo $each['price'];?>)">
                                                     <ion-icon style="margin: auto;" name="add-outline"></ion-icon>
                                                 </button>
                                             </div>
@@ -121,7 +121,7 @@
 
                                             <!-- Price -->
                                             <p class="text-start text-md-center">
-                                            <strong>
+                                            <strong class="list-price list-item--price_<?php echo $each['id'];?>">
                                                 <?php echo product_price($each['price'] * $each['quantity'])?>
                                             </strong>
                                             </p>
@@ -146,7 +146,7 @@
                                 <li
                                     class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
                                     Tổng tiền hàng
-                                    <span>
+                                    <span class="total-price">
                                         <?php echo product_price($totalPrice)?>
                                     </span>
                                 </li>
@@ -156,7 +156,7 @@
                                 </li>
                                 <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
                                     <strong>Tổng tiền thanh toán</strong>
-                                    <span><strong>
+                                    <span><strong class="total-price">
                                         <?php echo product_price($totalPrice)?>
                                     </strong></span>
                                 </li>
@@ -210,7 +210,50 @@
 			}
 		}
 
-        
+        let quantity;
+        function stepDown(id, price) {
+            quantity = document.querySelector(`input[name=quantity_${id}]`);
+            quantity.stepDown();
+            
+            updateQuantity(id, price, quantity);
+        }
+
+        function stepUp(id, price) {
+            quantity = document.querySelector(`input[name=quantity_${id}]`);
+            quantity.stepUp();
+            
+            updateQuantity(id, price, quantity);
+        }
+
+        function updateQuantity(id, price, quantity) {
+            if (quantity === null) {
+                quantity = document.querySelector(`input[name=quantity_${id}]`);
+                if (quantity.value < 1) {
+                    quantity.value = 0;
+                }
+            }
+            let xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    // show result here
+                    document.querySelector(`.list-item--price_${id}`).innerHTML = this.responseText;
+                    // update total price
+                    let totalPrice = 0;
+                    let listPrice = document.querySelectorAll('.list-price');
+                    listPrice.forEach(price => {
+                        totalPrice += parseInt(price.innerHTML.replace(/\./g, ''));
+                    });
+                    lstTotalPrice = document.querySelectorAll('.total-price');
+
+                    lstTotalPrice.forEach(total => {
+                        total.innerHTML = totalPrice.toLocaleString('it-IT', {style : 'currency', currency : 'VND'})
+                    });
+                }
+            }
+            xhr.open("GET", "update_quantity.php?id=" + id + "&quantity=" + quantity.value + "&price=" + price, true);
+            xhr.send();
+
+        }
 	</script>
 </body>
 </html>
