@@ -3,10 +3,10 @@
     <script>
         const sign_in = document.querySelector(".sign-in");
         const sign_up = document.querySelector(".sign-up");
-        sign_in.addEventListener("click", function(e){
+        sign_in?.addEventListener("click", function(e){
             document.querySelector("#signin").style.display = "block";
         });
-        sign_up.addEventListener("click", function(e){
+        sign_up?.addEventListener("click", function(e){
             document.querySelector("#signup").style.display = "block";
         });
         

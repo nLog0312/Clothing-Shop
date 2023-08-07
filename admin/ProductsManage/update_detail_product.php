@@ -50,6 +50,7 @@
 			$idProduct = $value['id_product'];
 			$size = $value['size'];
 			$color = $value['color'];
+			$quantity = $value['quantity'];
 		}
     ?>
 	<link rel="stylesheet" href="CSS/styleInsertProductDetail.css">
@@ -71,8 +72,13 @@
 					<input type="text" name="colorProduct" value="<?php echo $color?>">
 					<label class="validate colorProduct"></label>
 					<br>
+					<label for="colorProduct">2. Nhập số lượg sản phẩm: </label>
+					<br>
+					<input type="number" name="quantityProduct" value="<?php echo $quantity?>">
+					<label class="validate quantityProduct"></label>
+					<br>
 
-					<label for="sizeProduct">2. Nhập kích thước sản phẩm: </label>
+					<label for="sizeProduct">3. Nhập kích thước sản phẩm: </label>
 					<br>
 					<select id="sizeProduct" name="sizeProduct">
 						<option value="S" <?php if ($size == "S") echo "selected"?>>S</option>

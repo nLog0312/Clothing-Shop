@@ -76,6 +76,16 @@
                             <?php
                                 foreach ($cart as $id => $each) {
                                     $totalPrice += $each['price'] * $each['quantity'];
+                                    
+                                    $sql = "
+                                        SELECT quantity FROM product_detail
+                                        WHERE id = " . $each['id'] . " AND color = '" . $each['color'] . "' AND size = '" . $each['size'] . "'";
+                                    $result = mysqli_query($connect, $sql);
+                                    if (mysqli_num_rows($result) > 0) {
+                                        $quantity = mysqli_fetch_array($result)['quantity'];
+                                    } else {
+                                        $quantity = 0;
+                                    }
                             ?>
                                     <div class="row">
                                         <div class="col-lg-3 col-md-12 mb-4 mb-lg-0">
@@ -110,7 +120,7 @@
                                                 </button>
 
                                                 <div class="ms-1 me-1 form-outline">
-                                                    <input oninput="updateQuantity(<?php echo $each['id'];?>, <?php echo $each['price'];?>, null)" id="form1" min="1" name="quantity_<?php echo $each['id'];?>" value="<?php echo $each['quantity']?>" type="number" class="form-control" />
+                                                    <input oninput="updateQuantity(<?php echo $each['id'];?>, <?php echo $each['price'];?>, null)" id="form1" min="1" max="<?php echo $quantity;?>" name="quantity_<?php echo $each['id'];?>" value="<?php echo $each['quantity']?>" type="number" class="form-control" />
                                                 </div>
 
                                                 <button class="btn btn-primary" onclick="stepUp(<?php echo $each['id'];?>, <?php echo $each['price'];?>)">

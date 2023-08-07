@@ -121,7 +121,7 @@
                                                     foreach ($color as $index => $value) {
                                                         echo "
                                                             <div class='color-item fs-6'>
-                                                                <input style='display: none;' type='radio' name='color' id='color-$index' value='$value'>
+                                                                <input onclick='onInputColor(this)' style='display: none;' type='radio' name='color' id='color-$index' value='$value'>
                                                                 <label for='color-$index' style='background-color: $value'></label>
                                                             </div>
                                                         ";
@@ -136,7 +136,7 @@
                                                     foreach ($size as $index => $value) {
                                                         echo "
                                                             <div class='size-item fs-6'>
-                                                                <input type='radio' name='size' id='size-$index' value='$value'>
+                                                                <input onclick='onInputSize(this)' type='radio' name='size' id='size-$index' value='$value'>
                                                                 <label for='size-$index'>$value</label>
                                                             </div>
                                                         ";
@@ -198,6 +198,56 @@
             }
         ?>
         })
+
+        // check input color
+        function onInputColor(elementColor) {
+            let color = elementColor.value;
+            let xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    let result = this.responseText;
+                    if (result != null && result != '') {
+                        result = result.substring(1);
+                        const arraySize = result.split(',');
+                        let sizes = document.querySelectorAll('.size-item');
+                        for (let i = 0; i < sizes.length; i++) {
+                            sizes[i].querySelector('input').disabled = true;
+                        }
+                        arraySize.forEach((value, index) => {
+                            let size = document.querySelector(`input[value='${value}']`);
+                            size.disabled = false;
+                        })
+                    }
+                }
+            }
+            xhr.open('GET', './check_color.php?color=' + color, true);
+            xhr.send();
+        }
+
+        // check input size
+        function onInputSize(elementSize) {
+            let size = elementSize.value;
+            let xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    let result = this.responseText;
+                    if (result != null && result != '') {
+                        result = result.substring(1);
+                        const arrayColor = result.split(',');
+                        let colors = document.querySelectorAll('.color-item');
+                        for (let i = 0; i < colors.length; i++) {
+                            colors[i].style.display = 'none';
+                        }
+                        arrayColor.forEach((value, index) => {
+                            let color = document.querySelector(`input[value='${value}']`);
+                            color.parentNode.style.display = 'block';
+                        })
+                    }
+                }
+            }
+            xhr.open('GET', './check_size.php?size=' + size, true);
+            xhr.send();
+        }
 	</script>
 </body>
 </html>

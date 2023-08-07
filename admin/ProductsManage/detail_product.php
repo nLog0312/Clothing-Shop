@@ -95,6 +95,7 @@
 								<th>Ảnh</th>
 								<th>Size</th>
 								<th>Màu Sắc</th>
+								<th>Số Lượng</th>
 								<th colspan="2"></th>
 							</tr>
 							<?php
@@ -104,6 +105,7 @@
 									$color = $value['color'];
 									$size = $value['size'];
 									$image = $value['image'];
+									$quantity = $value['quantity'];
 
 									echo "<tr>";
 									echo "<td>
@@ -113,6 +115,7 @@
 									</td>";
 									echo "<td>$size</td>";
 									echo "<td>$color</td>";
+									echo "<td>$quantity</td>";
 									echo "<td>
 										<a href='../ProductsManage/update_detail_product.php?idDetail=$idDetail'>Sửa</a>
 										</td>";
