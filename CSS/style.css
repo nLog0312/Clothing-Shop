@@ -254,3 +254,87 @@ a{
     font-size: 20px;
     margin-right: 10px;
 }
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    .container .row {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .row .card {
+        width: 10rem !important;
+        --bs-card-spacer-x: 0.5rem !important;
+    }
+
+    .container-fluid {
+        padding: 0 15px;
+    }
+
+    .dropdown {
+        font-size: 7px;
+    }
+
+    .dropdown .btn {
+        --bs-btn-padding-x: 0.25rem !important;
+        --bs-btn-padding-y: 0.25rem !important;
+        font-size: 9px !important;
+    }
+
+    .dropdown-menu {
+        font-size: 7px;
+        left: -55px !important;
+        --bs-dropdown-min-width: 3rem !important;
+    }
+
+    .card-body {
+        justify-content: space-between;
+    }
+
+    .card-body h6 {
+        font-size: 18px !important;
+    }
+
+    .card-body h3 {
+        font-size: 12px !important;
+    }
+
+    .card-body button {
+        margin: 0 !important;
+        padding: 2px 1px !important;
+    }
+
+    .card-body button a {
+        font-size: 10px !important;
+    }
+}
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    .dropdown-menu {
+        left: -35px !important;
+    }
+
+    .container .row {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    .dropdown-menu {
+        left: -30px !important;
+    }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1280px) {
+    .dropdown-menu {
+        left: -20px !important;
+    }
+
+    .container .row {
+        width: 100%;
+        justify-content: flex-start;
+    }
+}

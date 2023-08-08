@@ -114,3 +114,208 @@
     --zoom-y: 50%;
     clip-path: circle(100px at var(--zoom-x) var(--zoom-y));
 }
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    #imgZoom {
+        display: none;
+    }
+
+    .container-fluid {
+        padding: 0 15px;
+    }
+
+    .dropdown {
+        font-size: 7px;
+    }
+
+    .dropdown .btn {
+        --bs-btn-padding-x: 0.25rem !important;
+        --bs-btn-padding-y: 0.25rem !important;
+        font-size: 9px !important;
+    }
+
+    .dropdown-menu {
+        font-size: 7px;
+        left: -55px !important;
+        --bs-dropdown-min-width: 3rem !important;
+    }
+
+    .body-detail {
+        padding: 0 15px;
+    }
+
+    .body-detail h1 {
+        font-size: 20px !important;
+    }
+
+    .body-detail h2 {
+        font-size: 18px !important;
+    }
+
+    .body-detail h3 {
+        font-size: 10px !important;
+    }
+
+    .product-show {
+        margin-top: 10px;
+        margin-left: 10px;
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
+    .product-show-footer {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        order: 2;
+        margin-top: 1rem !important;
+    }
+    .footer-right {
+        width: 50%;
+        font-size: 10px;
+    }
+
+    .footer-right ion-icon {
+        font-size: 15px;
+    }
+
+    .footer-left--color {
+        display: flex;
+        align-items: flex-start;
+    }
+
+    .footer-left--color h4 {
+        font-size: 12px !important;
+    }
+
+    .color-item label {
+        width: 13px;
+        height: 13px;
+    }
+
+    .footer-left--size {
+        margin-top: .5rem !important;
+        display: flex;
+        align-items: flex-start;
+    }
+
+    .footer-left--size h4 {
+        font-size: 12px !important;
+        margin-right: 5px;
+    }
+
+    .footer-left--size .size {
+        display: flex;
+    }
+
+    .size .size-item {
+        margin-right: 10px;
+        font-size: 15px !important;
+        display: flex;
+    }
+
+    .size-item input {
+        width: 13px;
+        height: 13px;
+    }
+
+    .size-item label {
+        margin-left: 3px;
+        font-size: 12px;
+    }
+
+    .product-show-header {
+        order: 3;
+    }
+
+    .product-show-body {
+        order: 1;
+    }
+
+
+    .product-img {
+        width: 80%;
+        max-height: 50vh;
+    }
+
+    /* .img-father.img-thumbnail {
+        width: 50px !important;
+        height: 50px !important;
+    } */
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+    #imgZoom {
+        display: none;
+    }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    #imgZoom {
+        display: none;
+    }
+
+    .footer-right {
+        width: 50%;
+        font-size: 15px;
+    }
+
+    .footer-right ion-icon {
+        font-size: 35px;
+    }
+
+    .footer-left--color h4 {
+        font-size: 15px !important;
+    }
+
+    .color-item label {
+        width: 25px;
+        height: 25px;
+    }
+
+    .footer-left--size {
+        margin-top: 1rem !important;
+    }
+
+    .footer-left--size h4 {
+        font-size: 15px !important;
+    }
+
+    .footer-left--size .size {
+        display: flex;
+    }
+
+    .size .size-item {
+        margin-right: 10px;
+        font-size: 15px;
+    }
+
+    .dropdown-menu {
+        left: -35px !important;
+    }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    #imgZoom {
+        display: none;
+    }
+
+    .dropdown-menu {
+        left: -30px !important;
+    }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1280px) {
+    #imgZoom {
+        display: inline;
+    }
+
+    .dropdown-menu {
+        left: -20px !important;
+    }
+}
