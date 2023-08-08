@@ -307,6 +307,25 @@ a{
     .card-body button a {
         font-size: 10px !important;
     }
+
+    .modal-content {
+        width: 80%;
+        font-size: 12px !important;
+    }
+
+    .modal-content input {
+        font-size: 12px !important;
+    }
+
+    .navbar-nav {
+        font-size: 9px;
+        display: flex;
+        flex-direction: row;
+    }
+
+    .nav-item {
+        margin-right: 10px;
+    }
 }
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
@@ -318,12 +337,50 @@ a{
         width: 100%;
         justify-content: center;
     }
+
+    .modal-content {
+        width: 60%;
+        font-size: 18px !important;
+    }
+
+    .modal-content input {
+        font-size: 18px !important;
+    }
+
+    .navbar-nav {
+        font-size: 14px;
+        display: flex;
+        flex-direction: row;
+    }
+
+    .nav-item {
+        margin-right: 10px;
+    }
 }
 
 /* Large devices (laptops/desktops, 992px and up) */
-@media only screen and (min-width: 992px) {
+@media only screen and (min-width: 992px) and (max-width: 1280px) {
     .dropdown-menu {
         left: -30px !important;
+    }
+
+    .modal-content {
+        width: 45%;
+        font-size: 18px !important;
+    }
+
+    .modal-content input {
+        font-size: 18px !important;
+    }
+
+    .navbar-nav {
+        font-size: 14px;
+        display: flex;
+        flex-direction: row;
+    }
+
+    .nav-item {
+        margin-right: 10px;
     }
 }
 
@@ -336,5 +393,10 @@ a{
     .container .row {
         width: 100%;
         justify-content: flex-start;
+    }
+
+    .modal-content {
+        width: 32%;
+        font-size: 18px !important;
     }
 }
